@@ -1,6 +1,7 @@
 import mysql from 'mysql';
 
-export async function createConnection() {
+
+export async function lastfmCreateConnection() {
     //database configs
     const config_db = {
         host: "localhost",
@@ -27,8 +28,8 @@ export async function createConnection() {
 }
 
 
-export async function searchUserArtistsByGenre(genre,  res) {
-    const lastfmUserArtists_db = await createConnection();
+export async function lastfmSearchUserArtistsByGenre(genre,  res) {
+    const lastfmUserArtists_db = await lastfmCreateConnection();
     const QUERY_ARTISTS_BY_TAG = `SELECT * FROM lastfmUserArtists
                                     WHERE tags LIKE '%${genre}%'
                                     ORDER BY playcount DESC`;    
@@ -38,14 +39,14 @@ export async function searchUserArtistsByGenre(genre,  res) {
         res.write("artist | playcount | tags \n")
         results.forEach( async result => {
             const {artist, playcount, tags} = result;
-           res.write(`${artist} - ${playcount} - ${tags} \n`); 
+           res.write(`${artist} | ${playcount} | ${tags} \n`); 
         });
         await res.end();
     })    
 }
 
-export async function searchUserTopTracksByArtist(artist, res) {
-    const lastfmUserTopTracks_db = await createConnection();
+export async function lastfmSearchUserTopTracksByArtist(artist, res) {
+    const lastfmUserTopTracks_db = await lastfmCreateConnection();
     const QUERY_SONGS_BY_ARTIST = `SELECT * FROM lastfmUserTopTracks
                                     WHERE artist LIKE '%${artist}%'
                                     ORDER BY playcount DESC`;    
@@ -55,14 +56,14 @@ export async function searchUserTopTracksByArtist(artist, res) {
         res.write("artist | playcount | song \n")
         results.forEach( async result => {
             const {artist, playcount, song} = result;
-           res.write(`${artist} - ${playcount} - ${song} \n`); 
+           res.write(`${artist} | ${playcount} | ${song} \n`); 
         });
         await res.end();
     }) 
 }
 
-export async function searchUserTopTracksBySong(song, res) {
-    const lastfmUserTopTracks_db = await createConnection();
+export async function lastfmSearchUserTopTracksBySong(song, res) {
+    const lastfmUserTopTracks_db = await lastfmCreateConnection();
     const QUERY_ARTIST_BY_SONG = `SELECT * FROM lastfmUserTopTracks
                                     WHERE song LIKE '%${song}%'
                                     ORDER BY playcount DESC`;    
@@ -72,7 +73,7 @@ export async function searchUserTopTracksBySong(song, res) {
         res.write("artist | playcount | song \n")
         results.forEach( async result => {
             const {artist, playcount, song} = result;
-           res.write(`${artist} - ${playcount} - ${song} \n`); 
+           res.write(`${artist} | ${playcount} | ${song} \n`); 
         });
         await res.end();
     }) 
