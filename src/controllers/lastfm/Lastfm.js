@@ -7,5 +7,6 @@ export default function Lastfm(){};
 Lastfm.prototype.OAuth = OAuth;
 Lastfm.prototype.cb = cb;
 Lastfm.prototype.setArtists = setArtists;
+Lastfm.prototype.getTotalPages = getTotalPages;
 Lastfm.prototype.setUserTopTracks = setUserTopTracks;
 //Lastfm.prototype.cb = cb;

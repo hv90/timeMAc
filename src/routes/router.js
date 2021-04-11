@@ -16,9 +16,9 @@ export function router(app) {
 
     app.get('/lastfm/cb', (req, res) => lastfm.cb(req, res));
 
-    //app.get('/lastfm/new/user/artists', (req, res) => getTotalPages(req, res));
+    app.get('/lastfm/new/user/artists', (req, res) => lastfm.getTotalPages(req, res));
 
-    //app.get('/lastfm/new/user/tracks', (req, res) => setUserTracks(req, res));    
+    app.get('/lastfm/new/user/tracks', (req, res) => lastfm.setUserTopTracks(req, res));    
 
     app.get('/lastfm/new/user/toptracks', (req, res) => lastfm.setUserTopTracks(req, res));
 

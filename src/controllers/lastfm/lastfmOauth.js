@@ -29,7 +29,7 @@ export function cb (req, res) {
                await fs.writeFileSync(dirAPIkey, JSON.stringify(file), 'utf-8');
             }
          )
-         .then(res.redirect('user/artists'))
+         .then(res.redirect('new/user/artists'))
          .catch(err => console.log(err));
     }
 

@@ -34,7 +34,7 @@ export async function getTotalPages(req, res) {
     await axios.get(url, { params })
         .then(async result => {
             let i = 0;
-            let totalPages = result.data.topartists['@attr'].totalPages;
+            let totalPages = await result.data.topartists['@attr'].totalPages;
             while (i < totalPages) {
                 res.write(`<a href=\'http://localhost:${getPortNumber()}/lastfm/user/artists?page=${i + 1}\'>
                 Set Page ${i + 1}</a> | `); i++;
